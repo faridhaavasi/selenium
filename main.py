@@ -26,19 +26,27 @@ c = 0
 #pagerButtonR
 #10986
 list_of_emaile = []
-for i in range(1, 1099):
+for i in range(1, 2):
     i +=10    
-    emails = driver.find_elements(By.CLASS_NAME, 'grid-cell')
+    block = driver.find_elements(By.CLASS_NAME, 'grid-cell')
+    emails = driver.find_elements(By.TAG_NAME, 'a')
     for email in emails:
         if '@' in email.text:
+    
             list_of_emaile.append(email.text)
     try:        
         next_key = driver.find_element(By.CLASS_NAME, 'pagerButtonR')
         time.sleep(4)
         next_key.click()
     except:
-        continue    
+        continue
+print('----------------------------------------')    
+print('resolt:')    
 print(list_of_emaile)
+for i in list_of_emaile:
+    f = open('Treade.text', 'w')
+    
+    f.write(i)
 
 time.sleep(7200)
 
