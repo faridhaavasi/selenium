@@ -42,11 +42,9 @@ for i in range(1, 2):
         continue
 print('----------------------------------------')    
 print('resolt:')    
-print(list_of_emaile)
-for i in list_of_emaile:
-    f = open('Treade.text', 'w')
-    
-    f.write(i)
+#print(list_of_emaile)
+for j in list_of_emaile:
+    print(j)
 
 time.sleep(7200)
 
