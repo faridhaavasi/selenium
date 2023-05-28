@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-
+from pandas import *
 import time
 se_str = 'Trade'
 driver = webdriver.Chrome()
@@ -25,26 +25,31 @@ time.sleep(4)
 c = 0
 #pagerButtonR
 #10986
-list_of_emaile = []
-for i in range(1, 2):
-    i +=10    
-    block = driver.find_elements(By.CLASS_NAME, 'grid-cell')
-    emails = driver.find_elements(By.TAG_NAME, 'a')
-    for email in emails:
-        if '@' in email.text:
+
+for i in range(0, 2):
+    i +=10
+    table = driver.find_element(By.TAG_NAME, 'table')    
+
+    a=driver.find_elements(By.TAG_NAME, 'a')
+    for item in a:
+        if '@' in item.text and item.text in table.text:
+
+            print('email:',item.text)
+            with open('Trade.text', 'a') as f:
+                f.write(item.text)
+                f.write('\n') 
     
-            list_of_emaile.append(email.text)
+
+ 
+       
+    
     try:        
         next_key = driver.find_element(By.CLASS_NAME, 'pagerButtonR')
         time.sleep(4)
         next_key.click()
     except:
         continue
-print('----------------------------------------')    
-print('resolt:')    
-#print(list_of_emaile)
-for j in list_of_emaile:
-    print(j)
+
 
 time.sleep(7200)
 
